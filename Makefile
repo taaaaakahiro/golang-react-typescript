@@ -5,6 +5,9 @@ up:
 up-build:
 	${DOCKER} up --build -d
 down:
+	${DOCKER} down
+
+down v:
 	${DOCKER} down -v
 build:
 	${DOCKER} build
