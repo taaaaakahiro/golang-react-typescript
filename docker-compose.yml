@@ -1,7 +1,7 @@
 version: "3"
 services:
   api:
-    image: golang:1.15
+    build: ./api 
     environment:
       MYSQL_HOST: mysql
       MYSQL_PORT: 3306
@@ -9,29 +9,19 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: password
     ports:
-      - 12380:80
+      - 8080:80
     tty: true
     volumes:
       - ./api:/app
     working_dir: /app
-    # command: "go run main.go"
+    command: "go run main.go"
 
-  mysql:
-    image: mysql:5.6
-    command: ["mysqld", "--character-set-server=utf8mb4"]
-    environment:
-      MYSQL_DATABASE: Go/Next
-      MYSQL_ROOT_PASSWORD: password
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    environment:
-      PMA_ARBITRARY: 1
-      PMA_HOST: mysql
-      PMA_USER: root
-      PMA_PASSWORD: password
-    ports:
-      - 12381:80
+  # mysql:
+  #   image: mysql:5.6
+  #   command: ["mysqld", "--character-set-server=utf8mb4"]
+  #   environment:
+  #     MYSQL_DATABASE: Go/Next
+  #     MYSQL_ROOT_PASSWORD: password
 
   next:
     build: .
