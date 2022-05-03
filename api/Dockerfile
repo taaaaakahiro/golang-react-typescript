@@ -9,3 +9,5 @@ WORKDIR /go/src/app
 # ホストのファイルをコンテナの作業ディレクトリに移行
 ADD . /go/src/app
 
+EXPOSE 8080
+
