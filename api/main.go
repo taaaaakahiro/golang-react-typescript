@@ -3,13 +3,18 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"time"
+	"html/template"
 )
 
 func main() {
+	http.HandleFunc("/template", templateHandler)
+	http.HandleFunc("/rest", restHandler)
 	http.HandleFunc("/", restHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
+// REST API
 func restHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
 		fmt.Fprintln(w, "GET called!!")
@@ -20,4 +25,10 @@ func restHandler(w http.ResponseWriter, r *http.Request) {
 	} else if r.Method == "DELETE" {
 		fmt.Fprintln(w, "DELETE called!!")
 	}
+}
+
+// Template Engine
+func templateHandler(w http.ResponseWriter, r *http.Request){
+	t, _ := template.ParseFiles("template/tmpl.html")
+	t.Execute(w, time.Now())
 }
