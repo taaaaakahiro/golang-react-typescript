@@ -1,8 +1,7 @@
 # golang_next.js
 SPA(Go × Next.js)
 
-### precedure
-How to run api !  
+### How to run api !  
 1. clone  
 2. command
 ```
