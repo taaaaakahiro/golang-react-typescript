@@ -1,13 +1,16 @@
 # golang_next.js
 SPA(Go × Next.js)
 
-### precedure
-Command to run api !  
-1. make up  
-2. make exec  
+### How to run api !  
+1. git clone <this repository>  
+2. input command below
+```
+make up //docker-compose up -d
+```
+3. access to localhost:8080 with chrome or somethig else
 
-### response check
-After run container, command below.
+### How to check the  HTTP response
+After run container, command below in Terminal.
 ```
 curl -X GET 'localhost:8080'    //GET called!!
 curl -X POST 'localhost:8080'   //POST called!!
