@@ -2,8 +2,8 @@
 SPA(Go × Next.js)
 
 ### How to run api !  
-1. clone  
-2. command
+1. git clone <this repository>  
+2. input command below
 ```
 make up //docker-compose up -d
 ```
