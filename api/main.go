@@ -10,10 +10,14 @@ import (
 func main() {
 	http.HandleFunc("/template", templateHandler)
 	http.HandleFunc("/rest", restHandler)
-	http.HandleFunc("/", restHandler)
+	http.HandleFunc("/", helloHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
+func helloHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Hello World!")
+	fmt.Fprintln(w, "Hello World!")
+}
 // REST API
 func restHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
