@@ -2,9 +2,13 @@
 SPA(Go × Next.js)
 
 ### precedure
-Command to run api !  
-1. make up  
-2. make exec  
+How to run api !  
+1. clone  
+2. command
+```
+make up //docker-compose up -d
+```
+3. access to localhost:8080 with chrome or somethig else
 
 ### How to check the  HTTP response
 After run container, command below in Terminal.
