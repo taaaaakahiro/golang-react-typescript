@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"time"
+	// "time"
 	"html/template"
 )
 
@@ -29,6 +29,8 @@ func restHandler(w http.ResponseWriter, r *http.Request) {
 
 // Template Engine
 func templateHandler(w http.ResponseWriter, r *http.Request){
-	t, _ := template.ParseFiles("template/tmpl.html")
-	t.Execute(w, time.Now())
+	t, _ := template.ParseFiles("template/tmpl.html", "template/tmpl2.html")
+	// t.Execute(w, time.Now())
+	DaysOfWeek := []string{"日", "月", "火", "水", "木", "金", "土"}
+	t.Execute(w, DaysOfWeek)
 }

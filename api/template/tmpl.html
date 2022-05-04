@@ -9,8 +9,30 @@
 <body>
     <p>Practice</p>
     <p>test!!!!!!!!</p>
+    <!-- Template Engine Action -->
     <div>
         {{ . }}
     </div>
+    <!-- 条件アクション -->
+    {{ if . }}
+        <div>
+            true!
+        </div>
+    {{ else }}
+        <div>
+            false!
+        </div>
+    {{ end }}
+    <!-- イテレーターアクション -->
+    {{ range . }}
+        <li>{{ . }}</li>
+    {{ end }}
+    <!-- 代入アクション -->
+    {{ with "月〜金"}}
+        <p>平日は{{ . }}曜日です</p>
+    {{ end }}
+    <!-- インクルードアクション -->
+    {{ template "tmpl2.html" . }}
+
 </body>
 </html>
