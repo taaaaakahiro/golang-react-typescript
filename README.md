@@ -6,8 +6,8 @@ Command to run api !
 1. make up  
 2. make exec  
 
-### response check
-After run container, command below.
+### How to check the  HTTP response
+After run container, command below in Terminal.
 ```
 curl -X GET 'localhost:8080'    //GET called!!
 curl -X POST 'localhost:8080'   //POST called!!
