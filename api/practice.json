@@ -1,8 +1,12 @@
-{
-    "test_1": "test", 
-    "test_2": [
-        "array",
-        "array2"
-    ], 
-    "test_3": "test" 
-}
+[
+    {
+        "test_2": {
+            "id": 1,
+            "name": "test_1"
+        },
+        "test_1": {
+            "id": 2,
+            "name": "test_2"
+        }
+    }
+]
