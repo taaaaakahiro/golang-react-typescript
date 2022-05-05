@@ -9,29 +9,12 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: password
     ports:
-      - 8080:8080 #ホストのポート:コンテナのポート
+      - 8080:8080 #host:container
     tty: true
     volumes:
       - ./api:/app
     working_dir: /app
     command: "go run main.go"
-
-  # mysql:
-  #   image: mysql:5.6
-  #   command: ["mysqld", "--character-set-server=utf8mb4"]
-  #   environment:
-  #     MYSQL_DATABASE: Go/Next
-  #     MYSQL_ROOT_PASSWORD: password
-
-  # phpmyadmin:
-  #   image: phpmyadmin/phpmyadmin
-  #   environment:
-  #     PMA_ARBITRARY: 1
-  #     PMA_HOST: mysql
-  #     PMA_USER: root
-  #     PMA_PASSWORD: password
-  #   ports:
-  #     - 12381:80
 
   next:
     build: .
