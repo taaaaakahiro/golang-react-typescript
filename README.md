@@ -20,3 +20,11 @@ curl -X POST 'localhost:8080/template'   //POST called!!
 curl -X PUT 'localhost:8080/template'    //PUT called!!
 curl -X DELETE 'localhost:8080/template' //DELETE called!!
 ```
+
+### To do
+ - clean architecture  
+ - DDD/domain-driven design  
+ - git hub action  
+ - Terraform  
+ - Mongo DB
+ - GraphQL
