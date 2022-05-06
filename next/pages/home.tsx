@@ -9,8 +9,8 @@ const Home: NextPage = () => {
   const [id, setId] =useState('test')
 
   useEffect(() => {
-    fetch("http://localhost:8080/rest", {method: 'GET'})
-    .then((res)=> console.log(res))
+    fetch("http://localhost:8080/rest", {method: 'GET'}) //CORS error
+    .then((res)=> console.log(res.status))
     
   }, [])
 

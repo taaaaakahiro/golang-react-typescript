@@ -19,6 +19,7 @@ func helloHandler(w http.ResponseWriter, r *http.Request) {
 }
 // REST API
 func restHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
 	// CASE1 ~switch文の場合~
 	switch r.Method {
 	case "GET":
