@@ -21,11 +21,16 @@ curl -X PUT 'localhost:8080/template'    //PUT called!!
 curl -X DELETE 'localhost:8080/template' //DELETE called!!
 ```
 
-### To do
+### To Do
  - clean architecture  
+    - https://gist.github.com/mpppk/609d592f25cab9312654b39f1b357c60  
  - DDD/domain-driven design  
- - git hub action  
+    - https://codezine.jp/article/detail/11968  
+ - GitHub Actions  
+    - https://knowledge.sakura.ad.jp/23478/  
  - Terraform
+    - https://blog.dcs.co.jp/aws/20210401-terraformaws.html  
+    - How to use  
     1. create 3 files(main.tf resource.tf variables.tf)  
         main.tf      : define the provider like AWS, GCP, azure  
         resoure.tf   : declare services  
@@ -44,4 +49,8 @@ curl -X DELETE 'localhost:8080/template' //DELETE called!!
         terraform destroy
         ```
  - Mongo DB
+    - https://openstandia.jp/oss_info/mongodb/  
+
  - GraphQL
+    - https://www.redhat.com/ja/topics/api/what-is-graphql  
+
