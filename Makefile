@@ -23,3 +23,6 @@ exec:
 	${DOCKER} exec api go run main.go
 sh:
 	${DOCKER} exec api sh
+# Test
+test:
+	${DOCKER} exec api go test -v -cover
