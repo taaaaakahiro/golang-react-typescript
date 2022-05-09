@@ -52,3 +52,8 @@ func templateHandler(w http.ResponseWriter, r *http.Request){
 	DaysOfWeek := []string{"日", "月", "火", "水", "木", "金", "土"}
 	t.Execute(w, DaysOfWeek)
 }
+
+func testPractice(x, y int) int {
+	z := x + y
+	return z
+}
