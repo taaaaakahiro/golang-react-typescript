@@ -25,6 +25,23 @@ curl -X DELETE 'localhost:8080/template' //DELETE called!!
  - clean architecture  
  - DDD/domain-driven design  
  - git hub action  
- - Terraform  
+ - Terraform
+    1. create 3 files(main.tf resource.tf variables.tf)  
+        main.tf      : define the provider like AWS, GCP, azure  
+        resoure.tf   : declare services  
+        variables.tf : set the variables  
+    2. check files
+        ```
+        terraform validate
+        ```
+    3. execute terraform
+        ```
+        terraform plan
+        terraform apply
+        ```
+    4. delete terraform
+        ```
+        terraform destroy
+        ```
  - Mongo DB
  - GraphQL
