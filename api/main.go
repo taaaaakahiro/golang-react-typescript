@@ -4,18 +4,28 @@ import (
 	"fmt"
 	"net/http"
 	"html/template"
+	"os"
+
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	// .env
+	loadenv()
+
+	// handler
 	http.HandleFunc("/template", templateHandler)
 	http.HandleFunc("/rest", restHandler)
 	http.HandleFunc("/", helloHandler)
+
+	// Server
 	http.ListenAndServe(":8080", nil)
+
 }
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Hello World!")
-	fmt.Fprintln(w, "Hello World!")
+	fmt.Fprint(w, "Hello World!")
 }
 // REST API
 func restHandler(w http.ResponseWriter, r *http.Request) {
@@ -24,7 +34,7 @@ func restHandler(w http.ResponseWriter, r *http.Request) {
 	// CASE1 ~switch文の場合~
 	switch r.Method {
 	case "GET":
-		fmt.Fprintln(w, "GET called!!")
+		fmt.Fprint(w, "GET called!!")
 	case "POST":
 		fmt.Fprintln(w, "POST called!!")
 	case "PUT":
@@ -56,4 +66,17 @@ func templateHandler(w http.ResponseWriter, r *http.Request){
 func testPractice(x, y int) int {
 	z := x + y
 	return z
+}
+
+func loadenv() {
+	// .env 全体を読み込む
+	err := godotenv.Load(".env")
+	// 読み込み成功かどうかを確認
+	if err != nil {
+		fmt.Printf("読み込み失敗: %v", err)
+	} 
+	// .env内の SAMPLEを取得してmessageに代入
+	message := os.Getenv("SAMPLE")
+	
+	fmt.Println(message)
 }
