@@ -7,20 +7,29 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
+	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
 )
 
 func main() {
+	Hello()
 	// .env
 	loadenv()
 
-	// handler
-	http.HandleFunc("/template", templateHandler)
-	http.HandleFunc("/rest", restHandler)
-	http.HandleFunc("/", helloHandler)
-
-	// Server
-	http.ListenAndServe(":8080", nil)
-
+	// chi
+	r := chi.NewRouter()
+	r.Use(middleware.Logger)
+	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("welcome"))
+	})
+	http.ListenAndServe(":8080", r)
+	
+	// net/http
+	// http.HandleFunc("/template", templateHandler)
+	// http.HandleFunc("/rest", restHandler)
+	// http.HandleFunc("/", helloHandler)
+	// http.HandleFunc("/grammer", grammerHandler)
+	// http.ListenAndServe(":8080", nil)
 }
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
@@ -77,6 +86,49 @@ func loadenv() {
 	} 
 	// .env内の SAMPLEを取得してmessageに代入
 	message := os.Getenv("SAMPLE")
-	
+
 	fmt.Println(message)
+}
+
+func grammerHandler(w http.ResponseWriter, r *http.Request) {
+// ポインタ
+	p := 99 //　初期値
+	pt := &p  //　ポインタ作成
+	fmt.Println(*pt) // ポインタ呼び出し 99
+	
+// 構造体フィールド
+	type vartex struct {
+		sum int
+		sumArray []int
+	}
+	var vt vartex
+	fmt.Println(vt) // {0 []}
+	fmt.Println(vt.sum) // 0
+	fmt.Println(vt.sumArray) // []
+	ptvt := &vt // 構造体型のポインタ作成
+	for i := 0; i < 100; i++ {
+		vt.sum += i
+		vt.sumArray = append(vt.sumArray, i)
+	}
+	fmt.Println(*ptvt) // {499500 [0,1 ... 99]}
+	// fmt.Println(*ptvt.sum) //NG
+	fmt.Println(vt.sum) // 4050
+	fmt.Println(vt.sumArray) // [0, 1 ... 99]
+	fmt.Println(len(vt.sumArray)) // 100
+	fmt.Println(vt.sumArray[5]) // 5
+//for文
+	//case1 ループ回数条件指定 
+	var sum = 0
+	for i := 0; i < 1000; i++ {
+		sum += i	
+	}
+	//case2-1 //全て取り出し index不要な場合
+	for i, _ := range vt.sumArray {
+		fmt.Println(i) // 0 ~ 99
+	}
+	//case2-2 //全て取り出し indexを使用する場合
+ 	for _, v := range vt.sumArray {
+		fmt.Println(v) // 0 ~ 99
+	}
+
 }
