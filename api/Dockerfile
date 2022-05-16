@@ -1,6 +1,8 @@
 FROM golang:1.15.2-alpine
-# アップデートとgitのインストール！！
-RUN apk update && apk add git
+# アップデートとgitのインストール
+RUN apk update && apk add 
+
+ENV CGO_ENABLED 0
 # appディレクトリの作成
 RUN mkdir /go/src/app
 # ワーキングディレクトリの設定
