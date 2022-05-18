@@ -15,6 +15,8 @@ services:
       - ./api:/app
     working_dir: /app
     command: "go run ."
+    depends_on:
+      - mongo
 
   next:
     build: .
@@ -23,3 +25,16 @@ services:
     command: sh -c "yarn dev"
     ports:
       - '3000:3000'
+
+  mongo:
+    image: mongo:5.0.3
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./db/mongo:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: example
+      TZ: Asia/Tokyo
