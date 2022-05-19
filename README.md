@@ -15,11 +15,19 @@ curl -X GET 'localhost:8080'    //Hello World!
 ### How to check the  HTTP response
 After run container, command below in Terminal.
 ```
-curl -X GET 'localhost:8080/template'    //GET called!!
-curl -X POST 'localhost:8080/template'   //POST called!!
-curl -X PUT 'localhost:8080/template'    //PUT called!!
-curl -X DELETE 'localhost:8080/template' //DELETE called!!
+curl -X GET 'localhost:8080/param/{id}'    //GET param/{id}
+curl -X POST 'localhost:8080/param/{id}'   //POST param/{id}
+curl -X PUT 'localhost:8080/param/{id}'    //PUT param/{id}
+curl -X DELETE 'localhost:8080/param/{id}' //DELETE param/{id}
 ```
+### Go
+ - package管理
+ ```
+ go mod init api
+ go mod tidy
+ ```
+
+### Typescript
 
 ### To Do
  - clean architecture  
@@ -38,6 +46,7 @@ curl -X DELETE 'localhost:8080/template' //DELETE called!!
     2. check files
         ```
         terraform validate
+        terraform fmt
         ```
     3. execute terraform
         ```
