@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
@@ -10,17 +11,29 @@ import (
 func main() {
 	// use func in handler.go
 	Hello()
+
 	// .env
 	loadenv()
+
 	// chi
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
-	// r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-	// 	w.Write([]byte("welcome"))
-	// })
+	r.Get("/welcome", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("welcome"))
+	})
 	r.Get("/", helloHandler)
 	r.Get("/tmp", templateHandler)
 	r.Get("/grm", grammerHandler)
+	// main
+	r.Route("/param", func(r chi.Router){
+		// sub
+		r.Route("/{ID}", func(r chi.Router) {
+			r.Get("/", getParam)                                          
+			r.Post("/", postParam)                                        // POST /param/111
+			r.Put("/", updateParam)                                       // PUT /param/111
+			r.Delete("/", deleteParam)                                    // DELETE /aparam/111
+			})
+	})
 	http.ListenAndServe(":8080", r)
 
 	// net/http
@@ -30,7 +43,25 @@ func main() {
 	// http.HandleFunc("/grammer", grammerHandler)
 	// http.ListenAndServe(":8080", nil)
 
-
-
-
+}
+// handler with param
+func getParam(w http.ResponseWriter, r *http.Request) {
+	ID := chi.URLParam(r, "ID")	
+	fmt.Println(ID)
+	fmt.Fprintln(w,"GET /param/"+ ID)
+  }
+func postParam(w http.ResponseWriter, r *http.Request) {
+	ID := chi.URLParam(r, "ID")	
+	fmt.Println(ID)
+	fmt.Fprintln(w,"POST /param/"+ ID)
+  }
+func updateParam(w http.ResponseWriter, r *http.Request) {
+	ID := chi.URLParam(r, "ID")
+	fmt.Println(ID)
+	fmt.Fprintln(w,"PUT /param/"+ ID)
+}
+func deleteParam(w http.ResponseWriter, r *http.Request) {
+	ID := chi.URLParam(r, "ID")
+	fmt.Println(ID)
+	fmt.Fprintln(w,"DELETE /param/"+ ID)
 }
