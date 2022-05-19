@@ -41,7 +41,7 @@ const Home: NextPage = () => {
   const [id, setId] =useState(0)
 
   useEffect(() => {
-    fetch("http://localhost:8080/rest", {method: 'GET'})
+    fetch("http://localhost:8080/param/5555", {method: 'GET'})
     .then((res)=> {
       setId(res.status)
     })
