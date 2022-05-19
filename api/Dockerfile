@@ -1,4 +1,4 @@
-FROM golang:1.15.2-alpine
+FROM golang:1.17-alpine
 # アップデートとgitのインストール
 RUN apk update && apk add 
 
@@ -11,4 +11,5 @@ WORKDIR /go/src/app
 ADD . /go/src/app
 # コンテナ内で使用するポート
 EXPOSE 8080
+
 
