@@ -13,7 +13,7 @@ down:
 down-v:
 	${DOCKER} down -v
 # 再起動
-restart:
+re:
 	${DOCKER} restart
 # ビルド
 build:
