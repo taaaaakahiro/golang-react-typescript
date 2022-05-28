@@ -1,10 +1,10 @@
 name: Action practice
 
 on:
-  # push:
+  push: # mainブランチにプッシュ時に実行
   #   branches: 
   #     - main
-  workflow_dispatch:
+  workflow_dispatch: #GitHub上で手動実行
 
 jobs:
   print-hello-world:
