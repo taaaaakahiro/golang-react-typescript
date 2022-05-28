@@ -69,6 +69,13 @@ func loadenv() {
 	// .env内の SAMPLEを取得してmessageに代入
 	message := os.Getenv("SAMPLE")
 
+	// 環境変数"SETENV"に"値を設定
+	os.Setenv("SETENV", "値を設定")
+	// "SETENV"を取得して、messageという変数に代入します。
+	msg := os.Getenv("SETENV")
+	// 確認
+	fmt.Println(msg)
+
 	fmt.Println(message)
 }
 
