@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
-
+	"api/practice"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -13,7 +13,8 @@ import (
 func main() {
 	// use func in handler.go
 	Hello()
-
+	// use packcage practice
+	practice.Display()
 	// .env
 	loadenv()
 
