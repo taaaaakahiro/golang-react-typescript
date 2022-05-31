@@ -2,11 +2,13 @@ package main
 
 import (
 	"testing"
+	"api/practice"
+	"fmt"
 )
 
 func TestPractice(t *testing.T) {
-	post, err := testPractice(3, 6)
-	if err != nil {
-		t.Error(err)
-	}
+	got := practice.MathTest(5, 7)
+    if got != 35 {
+        fmt.Println(got)
+    }
 }
