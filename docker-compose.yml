@@ -22,7 +22,7 @@ services:
     build: .
     volumes:
       - ./next:/opt/app
-    command: sh -c "yarn dev"
+    command: sh -c "npm run dev"
     ports:
       - '3000:3000'
 
