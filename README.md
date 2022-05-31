@@ -28,6 +28,9 @@ curl -X DELETE 'localhost:8080/param/{id}' //DELETE param/{id}
  ```
 
 ### Typescript
+```
+docker-compose run --rm app npm install create-next-app
+```
 
 ### To Do
  - clean architecture  
