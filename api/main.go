@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"net/http"
 	"api/practice"
+	"api/csvtest"
+	"api/db/jsonTest"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -15,6 +17,9 @@ func main() {
 	Hello()
 	// use packcage practice
 	practice.Display()
+	// use Encode and Decode
+	jsonTest.EncodeJson()
+	jsonTest.DecodeJson()
 	// .env
 	loadenv()
 
@@ -45,6 +50,7 @@ func main() {
 			r.Delete("/", deleteParam)                                    // DELETE /aparam/111
 			})
 	})
+	r.Post("/csv", postCsvParam)
 	http.ListenAndServe(":8080", r)
 
 	// net/http
@@ -75,4 +81,7 @@ func deleteParam(w http.ResponseWriter, r *http.Request) {
 	ID := chi.URLParam(r, "ID")
 	fmt.Println(ID)
 	fmt.Fprintln(w,"DELETE /param/"+ ID)
+}
+func postCsvParam(w http.ResponseWriter, r *http.Request){
+	csvtest.CsvExport()
 }
