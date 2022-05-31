@@ -7,4 +7,8 @@ import (
 
 func Display() {
 	fmt.Println("test", time.Now())
+} 
+
+func MathTest(a int, b int) int {
+	return a * b 
 }
