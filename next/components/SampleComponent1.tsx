@@ -16,6 +16,11 @@ const SampleComponent5: React.FC<Props>= (props) => {
   )
 }
 
+// type Filter = {
+//   <T>(array: T[]) : T[]
+// }
+
+
 
 /* ---------- 呼び出す側 ---------- */
 export const Parent: React.FC = () => {

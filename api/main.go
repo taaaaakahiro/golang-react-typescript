@@ -39,7 +39,7 @@ func main() {
 	})
 	r.Get("/", helloHandler)
 	r.Get("/tmp", templateHandler)
-	r.Get("/grm", grammerHandler)
+	r.Get("/grm", GrammerHandler)
 	// main
 	r.Route("/param", func(r chi.Router){
 		// sub

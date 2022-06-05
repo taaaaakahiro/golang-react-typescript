@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"html/template"
 	"os"
+	"encoding/json"
 
 	"github.com/joho/godotenv"
 )
@@ -79,7 +80,7 @@ func loadenv() {
 	fmt.Println(message)
 }
 
-func grammerHandler(w http.ResponseWriter, r *http.Request) {
+func GrammerHandler(w http.ResponseWriter, r *http.Request) {
 // ポインタ
 	p := 99 //　初期値
 	pt := &p  //　ポインタ作成
@@ -107,16 +108,42 @@ func grammerHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(vt.sumArray[5]) // 5
 //for文
 	//case1 ループ回数条件指定 
-	var sum = 0
-	for i := 0; i < 1000; i++ {
-		sum += i	
+	type Array struct {
+		Num []int
+		Str []string
 	}
+	var num Array
+	for i := 0; i < 100; i++ {
+		num.Num = append(num.Num, i)
+		num.Str = append(num.Str, string(i))
+	}
+	// json1 := `{
+	// 	"name": "test"
+	// }`
+	// fmt.Println(json1)
+	type User struct {
+		id string
+		name string
+	}
+
+	tkoi := &User{
+		id: "tkoide",
+		name: "koide takahiro",
+	}
+	json3, err := json.Marshal(tkoi.id)
+	json2, err := json.Marshal(tkoi)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println([]byte(json3))
+	fmt.Printf("%s\n", json2)
 	//case2-1 //全て取り出し index不要な場合
-	for i, _ := range vt.sumArray {
-		fmt.Println(i) // 0 ~ 99
-	}
+	// for i, _ := range vt.sumArray {
+	// 	fmt.Println(i) // 0 ~ 99
+	// }
 	//case2-2 //全て取り出し indexを使用する場合
- 	for _, v := range vt.sumArray {
-		fmt.Println(v) // 0 ~ 99
-	}
+ 	// for _, v := range vt.sumArray {
+	// 	fmt.Println(v) // 0 ~ 99
+	// }
 }
