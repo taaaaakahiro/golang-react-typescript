@@ -24,3 +24,6 @@ sh:
 # Test
 test:
 	${DOCKER} exec api go test -v -cover
+
+next:
+	cd ./next && npm run dev && cd ..
