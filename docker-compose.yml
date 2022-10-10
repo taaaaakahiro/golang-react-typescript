@@ -1,14 +1,14 @@
 version: "3"
 services:
   api:
-    build: ./api/docker 
+    build: ./api
     ports:
       - 8080:8080
     tty: true
     volumes:
       - ./api:/app
     working_dir: /app
-    command: "go run ./cmd/main.go"
+    command: "go run ."
     depends_on:
       - mongo
 
@@ -17,8 +17,6 @@ services:
     restart: always
     ports:
       - "27017:27017"
-    volumes:
-      - ./db/mongo:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
