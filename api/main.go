@@ -1,11 +1,10 @@
 package main
 
 import (
+	"api/csvtest"
+	"api/practice"
 	"fmt"
 	"net/http"
-	"api/practice"
-	"api/csvtest"
-	"api/db/jsonTest"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -17,9 +16,6 @@ func main() {
 	Hello()
 	// use packcage practice
 	practice.Display()
-	// use Encode and Decode
-	jsonTest.EncodeJson()
-	jsonTest.DecodeJson()
 	// .env
 	loadenv()
 
@@ -32,7 +28,7 @@ func main() {
 		ExposedHeaders:   []string{"Link"},
 		AllowCredentials: false,
 		MaxAge:           300, // Maximum value not ignored by any of major browsers
-	  }))
+	}))
 	r.Use(middleware.Logger)
 	r.Get("/welcome", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("welcome"))
@@ -41,14 +37,14 @@ func main() {
 	r.Get("/tmp", templateHandler)
 	r.Get("/grm", GrammerHandler)
 	// main
-	r.Route("/param", func(r chi.Router){
+	r.Route("/param", func(r chi.Router) {
 		// sub
 		r.Route("/{ID}", func(r chi.Router) {
-			r.Get("/", getParam)                                          
-			r.Post("/", postParam)                                        // POST /param/111
-			r.Put("/", updateParam)                                       // PUT /param/111
-			r.Delete("/", deleteParam)                                    // DELETE /aparam/111
-			})
+			r.Get("/", getParam)
+			r.Post("/", postParam)     // POST /param/111
+			r.Put("/", updateParam)    // PUT /param/111
+			r.Delete("/", deleteParam) // DELETE /aparam/111
+		})
 	})
 	r.Post("/csv", postCsvParam)
 	http.ListenAndServe(":8080", r)
@@ -61,27 +57,28 @@ func main() {
 	// http.ListenAndServe(":8080", nil)
 
 }
+
 // handler with param
 func getParam(w http.ResponseWriter, r *http.Request) {
-	ID := chi.URLParam(r, "ID")	
+	ID := chi.URLParam(r, "ID")
 	fmt.Println(ID)
-	fmt.Fprintln(w,"GET /param/"+ ID)
-  }
+	fmt.Fprintln(w, "GET /param/"+ID)
+}
 func postParam(w http.ResponseWriter, r *http.Request) {
-	ID := chi.URLParam(r, "ID")	
+	ID := chi.URLParam(r, "ID")
 	fmt.Println(ID)
-	fmt.Fprintln(w,"POST /param/"+ ID)
-  }
+	fmt.Fprintln(w, "POST /param/"+ID)
+}
 func updateParam(w http.ResponseWriter, r *http.Request) {
 	ID := chi.URLParam(r, "ID")
 	fmt.Println(ID)
-	fmt.Fprintln(w,"PUT /param/"+ ID)
+	fmt.Fprintln(w, "PUT /param/"+ID)
 }
 func deleteParam(w http.ResponseWriter, r *http.Request) {
 	ID := chi.URLParam(r, "ID")
 	fmt.Println(ID)
-	fmt.Fprintln(w,"DELETE /param/"+ ID)
+	fmt.Fprintln(w, "DELETE /param/"+ID)
 }
-func postCsvParam(w http.ResponseWriter, r *http.Request){
+func postCsvParam(w http.ResponseWriter, r *http.Request) {
 	csvtest.CsvExport()
 }

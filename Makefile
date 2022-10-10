@@ -1,9 +1,7 @@
 DOCKER=docker-compose
 
 #　起動
-up:
-	${DOCKER} up
-up-d:
+run:
 	${DOCKER} up -d
 up-build-d:
 	${DOCKER} up --build -d
